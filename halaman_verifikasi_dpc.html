@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verifikasi Tanda Tangan Digital - DPC</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #fff;
+      color: #111;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .page {
+      min-height: 100vh;
+      padding: 72px 28px;
+      display: flex;
+      justify-content: flex-start;
+    }
+    .verification {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      font-size: 22px;
+      line-height: 1.75;
+      letter-spacing: 0.2px;
+    }
+    .title {
+      margin: 0 0 38px;
+      text-transform: uppercase;
+    }
+    .label {
+      margin: 0 0 18px;
+      text-transform: uppercase;
+    }
+    .value {
+      margin: 0 0 24px;
+      text-transform: uppercase;
+    }
+    .spacer { height: 4px; }
+    .status {
+      margin-top: 2px;
+      text-transform: uppercase;
+    }
+    @media (max-width: 600px) {
+      .page { padding: 56px 24px; }
+      .verification {
+        font-size: 19px;
+        line-height: 1.8;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="verification" aria-label="Verifikasi tanda tangan">
+      <p class="title">BENAR INI ADALAH DOKUMEN YANG SAH<br>
+      DAPAT SEBAGAI PENGGANTI TANDA TANGAN<br>
+      ATAS NAMA:</p>
+
+      <p class="value" id="name">STEFANUS KEVIN SURYANTO</p>
+
+      <p class="value">KETUA DIGITAL PSYCHOLOGY COMMUNITY<br>
+      BINUS UNIVERSITY BANDUNG<br>
+      PERIODE 2026/2027</p>
+
+      <p class="value">CODE TTD <span id="code">DPC-001</span></p>
+
+      <p class="value">VALID ID <span id="validId">DPC-2026-001</span></p>
+
+      <p class="status">STATUS <span id="status">VALID_SIGN</span></p>
+    </section>
+  </main>
+
+  <script>
+    // Data dapat diubah melalui URL:
+    // ?name=...&code=...&valid_id=...&status=...
+    const params = new URLSearchParams(window.location.search);
+
+    const fields = {
+      name: document.getElementById("name"),
+      code: document.getElementById("code"),
+      validId: document.getElementById("validId"),
+      status: document.getElementById("status")
+    };
+
+    if (params.get("name")) fields.name.textContent = params.get("name").toUpperCase();
+    if (params.get("code")) fields.code.textContent = params.get("code").toUpperCase();
+    if (params.get("valid_id")) fields.validId.textContent = params.get("valid_id").toUpperCase();
+    if (params.get("status")) fields.status.textContent = params.get("status").toUpperCase();
+  </script>
+</body>
+</html>
